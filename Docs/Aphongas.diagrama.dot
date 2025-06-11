@@ -1,0 +1,40 @@
+digraph MER {
+    rankdir=LR;
+    node [shape=record, fontname="Arial"];
+
+    auth_user [label="{auth_user|id PK\lusername\lemail\l...}"];
+    auth_group [label="{auth_group|id PK\lname}"];
+    auth_permission [label="{auth_permission|id PK\lcodename\lname\lcontent_type_id}"];
+    auth_group_permissions [label="{auth_group_permissions|id PK\lgroup_id FK\lpermission_id FK}"];
+    auth_user_groups [label="{auth_user_groups|id PK\luser_id FK\lgroup_id FK}"];
+    auth_user_user_permissions [label="{auth_user_user_permissions|id PK\luser_id FK\lpermission_id FK}"];
+    depositos [label="{depositos|id PK\ldescricao\l...}"];
+    fornecedores [label="{fornecedores|id PK\nome\l...}"];
+    produtos [label="{produtos|id PK\ldescricao\l...}"];
+    movimentacoes [label="{movimentacoes|id PK\lquantidade\ltipo\l...}"];
+
+    // Relationships
+    auth_group_permissions -> auth_group [label="group_id"];
+    auth_group_permissions -> auth_permission [label="permission_id"];
+    auth_user_groups -> auth_user [label="user_id"];
+    auth_user_groups -> auth_group [label="group_id"];
+    auth_user_user_permissions -> auth_user [label="user_id"];
+    auth_user_user_permissions -> auth_permission [label="permission_id"];
+
+    depositos -> auth_user [label="created_by_id", style=dashed];
+    depositos -> auth_user [label="updated_by_id", style=dashed];
+
+    fornecedores -> auth_user [label="created_by_id", style=dashed];
+    fornecedores -> auth_user [label="updated_by_id", style=dashed];
+
+    produtos -> auth_user [label="created_by_id", style=dashed];
+    produtos -> auth_user [label="updated_by_id", style=dashed];
+    produtos -> depositos [label="deposito_padrao_id", style=dashed];
+    produtos -> fornecedores [label="fornecedor_padrao_id", style=dashed];
+
+    movimentacoes -> auth_user [label="created_by_id", style=dashed];
+    movimentacoes -> auth_user [label="updated_by_id", style=dashed];
+    movimentacoes -> depositos [label="deposito_id"];
+    movimentacoes -> fornecedores [label="fornecedor_id", style=dashed];
+    movimentacoes -> produtos [label="produto_id"];
+}

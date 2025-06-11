@@ -1,0 +1,78 @@
+digraph MER {
+    rankdir=LR;
+    node [shape=record, fontname="Arial"];
+
+    depositos [label="{depositos|
+        id: INTEGER PK\l
+        created_at: DATETIME\l
+        updated_at: DATETIME\l
+        descricao: VARCHAR(100)\l
+        endereco: TEXT\l
+        capacidade_m3: REAL\l
+        modelo: VARCHAR(1)\l
+        tipo: VARCHAR(1)\l
+        created_by_id: INTEGER FK\l
+        updated_by_id: INTEGER FK\l
+        status: VARCHAR(1)
+    }"];
+
+    fornecedores [label="{fornecedores|
+        id: INTEGER PK\l
+        status: VARCHAR(1)\l
+        created_at: DATETIME\l
+        updated_at: DATETIME\l
+        nome: VARCHAR(100)\l
+        tipo: VARCHAR(2)\l
+        documento: VARCHAR(50)\l
+        telefone: VARCHAR(20)\l
+        endereco: TEXT\l
+        responsavel: VARCHAR(100)\l
+        created_by_id: INTEGER FK\l
+        updated_by_id: INTEGER FK
+    }"];
+
+    produtos [label="{produtos|
+        id: INTEGER PK\l
+        status: VARCHAR(1)\l
+        created_at: DATETIME\l
+        updated_at: DATETIME\l
+        descricao: VARCHAR(255)\l
+        unidade: VARCHAR(2)\l
+        fotografia: VARCHAR(100)\l
+        altura: REAL\l
+        largura: REAL\l
+        profundidade: REAL\l
+        peso: REAL\l
+        observacoes: TEXT\l
+        created_by_id: INTEGER FK\l
+        deposito_padrao_id: BIGINT FK\l
+        fornecedor_padrao_id: BIGINT FK\l
+        updated_by_id: INTEGER FK\l
+        marca: VARCHAR(100)\l
+        qtd_embalagem: REAL\l
+        tipo: VARCHAR(15)\l
+        codigo_de_barras: VARCHAR(200)
+    }"];
+
+    movimentacoes [label="{movimentacoes|
+        id: INTEGER PK\l
+        status: VARCHAR(1)\l
+        created_at: DATETIME\l
+        updated_at: DATETIME\l
+        quantidade: REAL\l
+        tipo: VARCHAR(1)\l
+        nome_cliente: VARCHAR(100)\l
+        created_by_id: INTEGER FK\l
+        deposito_id: BIGINT FK\l
+        fornecedor_id: BIGINT FK\l
+        updated_by_id: INTEGER FK\l
+        produto_id: BIGINT FK
+    }"];
+
+    // Relationships
+    produtos -> depositos [label="deposito_padrao_id"];
+    produtos -> fornecedores [label="fornecedor_padrao_id"];
+    movimentacoes -> depositos [label="deposito_id"];
+    movimentacoes -> fornecedores [label="fornecedor_id"];
+    movimentacoes -> produtos [label="produto_id"];
+}

@@ -1,0 +1,29 @@
+{% extends './template.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-6 d-flex">
+        <div class="card w-100 my-3 shadow">
+            <div class="card-header bg-warning text-dark">Registrar Saída</div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="text-center">
+                        <h1 class="display-2 text-warning">
+                            <i class="bi bi-box-arrow-right me-1"></i>
+                        </h1>
+                    </div>
+                    {{form}}
+                    <div class="d-grid w-100">
+                        <button class="btn btn-warning">Registrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

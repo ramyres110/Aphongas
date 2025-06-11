@@ -1,0 +1,47 @@
+{% load static %}
+<nav class="navbar navbar-expand-sm bg-primary shadow fixed-top" data-bs-theme="blue">
+    <div class="container-fluid align-items-center">
+        <div>
+            <button class="navbar-toggler border-0 me-2" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+            </button>
+            <a class="navbar-brand text-light" href="/backoffice">
+                <img src="{% static 'imgs/warehouse_cart_packages_icon_128.png' %}" alt="Aphongás" width="30"
+                    height="24" style="filter: invert(1)">
+                Backoffice
+            </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% include './colapsemenu.html' %}
+        </div>
+        
+        <div class="navbar-nav">
+            <div class="nav-item dropdown">
+                <button class="btn dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle me-1"></i>
+                    <div class="d-none d-sm-inline ">
+                        {{user.first_name}}
+                    </div>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end position-absolute">
+                    <li><a class="dropdown-item" href="{% url 'Movimentacao_Perfil' %}">Perfil</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'Movimentacao_Index'  %}">Movimentacão</a></li>
+                    {% if user.is_superuser %}
+                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">Administração</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    {% endif %}
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</nav>

@@ -1,0 +1,28 @@
+{% extends './template.html' %}
+
+{% block content %}
+<style>
+    #index_backoffice img {
+        filter: brightness(0) saturate(100%) invert(38%) sepia(99%) saturate(2179%) hue-rotate(195deg) brightness(100%) contrast(102%);
+    }
+</style>
+
+<div id="index_backoffice" class="text-primary">
+    {% include './components/banner.html' %}
+
+    {% for k, v in menu.items %}
+        <p>{{k}}</p>
+        <ul>
+            {% for i in v %}
+                <li>
+                    <a href="{{i.link}}">
+                        <i class="bi {{i.icon}}"></i>
+                        {{i.label}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
+
+{% endblock %}

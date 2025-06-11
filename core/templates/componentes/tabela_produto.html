@@ -1,0 +1,43 @@
+{% load static %}
+<div class="row">
+    <div class="col">
+        <div class="table-responsive w-100 shadow">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Imagem</th>
+                        <th>Descrição</th>
+                        <th>Marca</th>
+                        <th>Tipo</th>
+                        <th>Embalagem</th>
+                        <th>Dimensões</th>
+                        <th>Peso</th>
+                        <th>Estoque</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if produtos %}
+                    {% for produto in produtos %}
+                    <tr>
+                        <td>{{produto.id}}</td>
+                        <td><img src="{% static  produto.fotografia %}" height="150" /></td>
+                        <td>{{produto.descricao}}</td>
+                        <td>{{produto.marca}}</td>
+                        <td>{{produto.tipo}}</td>
+                        <td>{{produto.qtd_embalagem}} {{produto.unidade}}</td>
+                        <td>{{produto.altura}} x {{produto.largura}} x {{produto.profundidade}}</td>
+                        <td>{{produto.peso}}</td>
+                        <td>{{produto.get_total_estoque}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="9" class="text-center">Nenhum produto cadastrado!</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

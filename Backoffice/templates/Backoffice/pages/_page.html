@@ -1,0 +1,15 @@
+{% extends '../template.html' %}
+
+{% block content %}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <button class="nav-link active" aria-current="page">{{page_title|default:"Página"}}</button>
+    </li>
+</ul>
+<div class="w-100 p-3 py-5">
+    {% block interno %}
+    {% endblock %}
+</div>
+
+{% endblock %}

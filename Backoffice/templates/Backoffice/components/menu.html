@@ -1,0 +1,78 @@
+<ul class="list-group list-group-flush">
+    {% if perms.core.view_movimentacao %}
+    <li class="list-group-item p-0 pb-2 border-0">
+        <strong class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+            <i class="bi bi-arrow-left-right me-2"></i>
+            Movimentações
+        </strong>
+        <div class="list-group list-group-flush">
+            <a href="{% url 'Backoffice_Movimentacao' %}" class="list-group-item list-group-item-action border-0">Todas</a>
+            <a href="{% url 'Backoffice_Movimentacao' %}?filtro=E" class="list-group-item list-group-item-action border-0">Entradas</a>
+            <a href="{% url 'Backoffice_Movimentacao' %}?filtro=S" class="list-group-item list-group-item-action border-0">Saídas</a>
+            {% if perms.core.add_movimentacao %}
+            <a href="{% url 'Backoffice_Movimentacao_Cadastrar' %}" class="list-group-item list-group-item-action border-0">Cadastrar</a>
+            {% endif %}
+        </div>
+    </li>
+    {% endif %}
+
+    {% if perms.core.view_produto %}
+    <li class="list-group-item p-0 pb-2 border-0">
+        <strong class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+            <i class="bi bi-box-seam me-2"></i>
+            Produtos
+        </strong>
+        <div class="list-group list-group-flush">
+            <a href="{% url 'Backoffice_Produto' %}" class="list-group-item list-group-item-action border-0">Pesquisar</a>
+            {% if perms.core.add_produto %}
+            <a href="{% url 'Backoffice_Produto_Cadastrar' %}" class="list-group-item list-group-item-action border-0">Cadastrar</a>
+            {% endif %}
+        </div>
+    </li>
+    {% endif %}
+
+    {% if perms.core.view_deposito %}
+    <li class="list-group-item p-0 pb-2 border-0">
+        <strong class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+            <i class="bi bi-house me-2"></i>
+            Depósitos
+        </strong>
+        <div class="list-group list-group-flush">
+            <a href="{% url 'Backoffice_Deposito' %}" class="list-group-item list-group-item-action border-0">Pesquisar</a>
+            {% if perms.core.add_deposito %}
+            <a href="{% url 'Backoffice_Deposito_Cadastrar' %}" class="list-group-item list-group-item-action border-0">Cadastrar</a>
+            {% endif %}
+        </div>
+    </li>
+    {% endif %}
+    
+    {% if perms.core.view_fornecedor %}
+    <li class="list-group-item p-0 pb-2 border-0">
+        <strong class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+            <i class="bi bi-people me-2"></i>
+            Fornecedores
+        </strong>
+        <div class="list-group list-group-flush">
+            <a href="{% url 'Backoffice_Fornecedor' %}" class="list-group-item list-group-item-action border-0">Pesquisar</a>
+            {% if perms.core.add_fornecedor %}
+            <a href="{% url 'Backoffice_Fornecedor_Cadastrar' %}" class="list-group-item list-group-item-action border-0">Cadastrar</a>
+            {% endif %}
+        </div>
+    </li>
+    {% endif %}
+    
+    {% if perms.auth.view_user %}
+    <li class="list-group-item p-0 pb-2 border-0">
+        <strong class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+            <i class="bi bi-person-circle me-2"></i>
+            Usuários
+        </strong>
+        <div class="list-group list-group-flush">
+            <a href="{% url 'Backoffice_Usuario' %}" class="list-group-item list-group-item-action border-0">Pesquisar</a>
+            {% if perms.auth.add_user %}
+            <a href="{% url 'Backoffice_Usuario_Cadastrar' %}" class="list-group-item list-group-item-action border-0">Cadastrar</a>
+            {% endif %}
+        </div>
+    </li>
+    {% endif %}
+</ul>
